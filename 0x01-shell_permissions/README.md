@@ -1,1 +1,1 @@
-script that prints the effective username of the current user
+0x01. Shell, permissions
