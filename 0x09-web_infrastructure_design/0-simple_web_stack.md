@@ -1,7 +1,7 @@
 # Simple Web Stack
 
 
-[Visit miro](https://miro.com/app/board/uXjVKcllGyo=/?share_link_id=683913690223)
+[Visit miro](https://miro.com/app/board/uXjVKczypE8=/?share_link_id=172038009550)
 
 ## Description
 

@@ -1,6 +1,6 @@
 # Secured and Monitored Web Infrastructure
 
-[Visit miro](https://miro.com/app/board/uXjVKcllGyo=/?share_link_id=234787652990)
+[Visit miro](https://miro.com/app/board/uXjVKcz9Cmk=/?share_link_id=203522234790)
 
 ## Description
 
