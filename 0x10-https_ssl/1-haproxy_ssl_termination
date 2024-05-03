@@ -20,14 +20,13 @@ defaults
 
 frontend www-http
     bind   0.0.0.0:80
-    reqadd X-Forwarded-Proto:\ http
+    mode http
+    http-request set-header X-Forwarded-Proto http
     default_backend www-backend
 
 frontend www-https
-    bind   0.0.0.0:443 ssl crt /etc/haproxy/certs/www.bdbnb.site.pem
-    reqadd X-Forwarded-Proto:\ https
-    acl    letsencrypt-acl path_beg /.well-known/acme-challenge/
-    use_backend letsencrypt-backend if letsencrypt-acl
+    bind   0.0.0.0:443 ssl crt /etc/haproxy/certs/www.yafiets231.tech.pem
+    http-request set-header X-Forwarded-Proto http
     default_backend www-backend
 
 backend www-backend
@@ -35,6 +34,3 @@ backend www-backend
     redirect scheme https if !{ ssl_fc }
     server 119892-web-01 34.224.16.160:80 check
     server 119892-web-02 3.85.136.56:80 check
-
-backend letsencrypt-backend
-    server letsencrypt 127.0.0.1:54321
