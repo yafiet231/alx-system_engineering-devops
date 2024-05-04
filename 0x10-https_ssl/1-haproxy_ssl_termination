@@ -18,19 +18,18 @@ defaults
     option  forwardfor
     option  http-server-close
 
-frontend www-http
-    bind   0.0.0.0:80
-    mode http
-    http-request set-header X-Forwarded-Proto http
-    default_backend www-backend
+frontend yafiets231-frontend
+    bind *:80
+    http-request redirect scheme https code 301 unless { ssl_fc }
+    http-request set-header X_forwarded-Proto http
+    default_backend yafiets231-backend
 
-frontend www-https
-    bind   0.0.0.0:443 ssl crt /etc/haproxy/certs/www.yafiets231.tech.pem
-    http-request set-header X-Forwarded-Proto http
-    default_backend www-backend
+frontend yafiets231-frontend-http
+    bind *:443 ssl crt /etc/haproxy/certs/www.yafiets231.tech.pem
+    http-request set-header X_forwarded-Proto http
+    default_backend yafiets231-backend
 
-backend www-backend
+backend yafiets231-backend
     balance  roundrobin
-    redirect scheme https if !{ ssl_fc }
     server 119892-web-01 34.224.16.160:80 check
     server 119892-web-02 3.85.136.56:80 check

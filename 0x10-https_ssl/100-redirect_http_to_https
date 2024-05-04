@@ -20,13 +20,13 @@ defaults
 
 frontend yafiets231-frontend
     bind *:80
-    http-request set-header X-Forwarded-Proto http
+    http-request redirect scheme https code 301 unless { ssl_fc }
+    http-request set-header X_forwarded-Proto http
     default_backend yafiets231-backend
-    redirect scheme https code 301 if !{ ssl_fc }
 
 frontend yafiets231-frontend-http
     bind *:443 ssl crt /etc/haproxy/certs/www.yafiets231.tech.pem
-   http-request set-header X-Forwarded-Proto http
+    http-request set-header X_forwarded-Proto http
     default_backend yafiets231-backend
 
 backend yafiets231-backend
