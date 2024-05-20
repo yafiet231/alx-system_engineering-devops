@@ -1,10 +1,10 @@
-0x15. API
-Python
+# 0x15. API
+**Python
 Scripting
 Back-end
-API
+API**
 
-#Background Context
+# Background Context
 
 
 Old-school system administrators usually only know Bash and that is what they use to build their scripts. While Bash is perfectly fine for a lot of things, it can quickly get messy and not efficient compared to other programming languages. The new generation of system administrators, usually called SREs, are pretty much regular software engineers but instead of building products, they are managing systems. And one of the big differences with their predecessors is that they know more than just Bash scripting.
@@ -13,17 +13,17 @@ One popular way to expose an application and dataset is to use an API. Often, th
 
 This is a perfect example of a task that is not suited for Bash scripting, so let’s build Python scripts.
 
-##Resources
-#Read or watch:
+# Resources
+**Read or watch:**
 
-[Friends don’t let friends program in shell script](https://www.turnkeylinux.org/blog/friends-dont-let-friends-program-shell-script "Friends don’t let friends program in shell script")
+- [Friends don’t let friends program in shell script](https://www.turnkeylinux.org/blog/friends-dont-let-friends-program-shell-script "Friends don’t let friends program in shell script")
 
-[What is an API](https://www.webopedia.com/definitions/api/ "What is an API")
+- [What is an API](https://www.webopedia.com/definitions/api/ "What is an API")
 
-[What is an API? In English, please](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/ "What is an API? In English, please")
+- [What is an API? In English, please](https://www.freecodecamp.org/news/what-is-an-api-in-english-please-b880a3214a82/ "What is an API? In English, please")
 
-[What is a REST API](https://www.sitepoint.com/rest-api/ "What is a REST API")
+- [What is a REST API](https://www.sitepoint.com/rest-api/ "What is a REST API")
 
-[What are microservices](https://smartbear.com/learn/api-design/microservices/ "What are microservices")
+- [What are microservices](https://smartbear.com/learn/api-design/microservices/ "What are microservices")
 
-[PEP8 Python style - having a clean code respecting style guide is really appreciated in the industry](https://peps.python.org/pep-0008/ "PEP8 Python style - having a clean code respecting style guide is really appreciated in the industry"
+- [PEP8 Python style - having a clean code respecting style guide is really appreciated in the industry](https://peps.python.org/pep-0008/ "PEP8 Python style - having a clean code respecting style guide is really appreciated in the industry"
