@@ -1,28 +1,44 @@
 #!/usr/bin/env bash
-# A script to install and configure HAProxy on lb-01 server
-# Configure HAProxy to send traffic to web-01 and web-02 servers
-# Distribute requests using a roundrobin algorithm
-# Make sure that HAProxy can be managed via an init script
+# Installs HAProxy version 2.9 with the following configurations:
+#+    Enables management via the init script.
+#+    Distributes requests using a round-robin algorithm.
 
-# Check for update and install HAproxy on my lb-01 server
 apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-2.5
-apt-get -y update
-apt-get install -y haproxy=2.5.\*
+add-apt-repository -y ppa:vbernat/haproxy-2.9
+apt-get update
+apt-get install -y haproxy=2.9.\*
 
-# Ensure haproxy started by init script
-echo "ENABLED=1" > /etc/default/haproxy
+echo "ENABLED=1" >> /etc/default/haproxy
+mv /etc/haproxy/haproxy.cfg{,.original}
+touch /etc/haproxy/haproxy.cfg
 
-# Configure the config file
-echo "
-   listen load_balancer
-   bind *:80
-   mode http
-   balance roundrobin
-   option httpclose
-   option forwardfor
-   server 119892-web-01 34.224.16.160:80 check
-   server 119892-web-02 3.85.136.56:80 check
+printf %s "global
+    log 127.0.0.1 local0 notice
+    maxconn 2000
+    user haproxy
+    group haproxy
+
+defaults
+    log     global
+    mode    http
+    option  httplog
+    option  dontlognull
+    retries 3
+    option redispatch
+    timeout connect  5000
+    timeout client  10000
+    timeout server  10000
+
+listen hbnb
+    bind 0.0.0.0:80
+    mode http
+    stats enable
+    stats uri /haproxy?stats
+    balance roundrobin
+    option httpclose
+    option forwardfor
+    server 119892-web-01 34.224.16.160:80 check
+    server 119892-web-02 54.84.151.99:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 service haproxy start
