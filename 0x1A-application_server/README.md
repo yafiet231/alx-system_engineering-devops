@@ -1,6 +1,6 @@
 # Application server
 
-Concepts
+**Concepts**
 
 [Web Server](https://intranet.alxswe.com/concepts/17 "Web Server")
 
@@ -18,43 +18,27 @@ Upstart script to keep the application running on server reboots.
 * **0. Set up development with Python**
   * In this task, I configured the file `web_flask/0-hello_route.py` from my
   [AirBnB_clone_v2](https://github.com/bdbaraban/AirBnB_clone_v2) to serve content
-  on the route `/airbnb-onepage/`, running on port `5000`.
+  on the route `/airbnb-onepage/`, running on port `5000`
 
-* **1. Set up production with Gunicorn**
-  * This task involved setting up a production environment, installing and configuring
-  Gunicorn to serve the same file from task 0.
+# Background Context
 
-* **2. Serve a page with Nginx**
-  * [2-app_server-nginx_config](./2-app_server-nginx_config): Nginx configuration file
-  proxying requests on the route `/airbnb-onepage/` to the Gunicorn app running on
-  port `5000`.
 
-* **3. Add a route with query parameters**
-  * [3-app_server-nginx_config](./3-app_server-nginx_config): Nginx configuration file
-  proxying requests on the route `/airbnb-dynamic/number_odd_or_even/<int: num>` to the
-  Gunicorn app running on port `5000`.
+- Your web infrastructure is already serving web pages via Nginx that you installed in your [first web stack project](https://intranet.alxswe.com/projects/266 "first web stack project"). 
+While a web server can also serve dynamic content, this task is usually given to an application server. In this project you will add this piece to your infrastructure, plug it to
+your Nginx and make is serve your Airbnb clone project.
 
-* **4. Let's do this for your API**
+# Resources
 
-  * In this task, I configured the API from my [AirBnB_clone_v3](./https://github.com/Ostoyae/AirBnB_clone_v3) to run on Gunicorn.
-  * [4-app_server-nginx_config](./4-app_server-nginx_config): Nginx configuration file
-  that proxies requests on the AirBnB API to the corresponding Gunicorn app.
+**Read or watch:**
 
-* **5. Serve your AirBnB clone**
+[Application server vs web server](https://www.f5.com/glossary "Application server vs web server")
 
-  * In this task, I configured the complete AirBnB app from [AirBnB_clone_v4](https://github.com/bdbaraban/AirBnB_clone_v4) to run on Gunicorn and be served through Nginx.
-  * [5-app_server-nginx_config](./5-app_server-nginx_config): Nginx configuration file
-  configured to serve the static assets from `web_dynamic/static/` on the Gunicorn AirBnB
-  app.
+[How to Serve a Flask Application with Gunicorn and Nginx on Ubuntu 16.04 (As mentioned in the video, do not install Gunicorn using virtualenv, just install everything globally)]
+(https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-gunicorn-and-nginx-on-ubuntu-16-04 "How to Serve a Flask Application with Gunicorn and Nginx on Ubuntu 16.04 
+(As mentioned in the video, do not install Gunicorn using virtualenv, just install everything globally)")
 
-* **6. Deploy it**
+[Running Gunicorn](https://docs.gunicorn.org/en/latest/run.html "Running Gunicorn")
 
-  * [gunicorn.conf](./gunicorn.conf): Configuration file for an Upstart script that starts a
-  Gunicorn process bounded to port 5003 that serves the content from task 5.
-  * The Gunicorn process spawns three worker processes and logs errors to `/tmp/airbnb-error.log`,
-  access to `/tmp/airbnb-access.log`.
+[Be careful with the way Flask manages slash in route - strict_slashes](https://werkzeug.palletsprojects.com/en/3.0.x/ "Be careful with the way Flask manages slash in route - strict_slashes")
 
-* **7. No service interruption**
-
-  * [4-reload_gunicorn_no_downtime](./4-reload_gunicorn_no_downtime): Bash script that gracefully
-  reloads Gunicorn.
+[Upstart documentation](https://doc.ubuntu-fr.org/upstart "Upstart documentation")
